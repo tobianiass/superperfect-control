@@ -7,11 +7,17 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
+    screens: {
+        sm: '768px',
+        md: '1024px',
+        xl: '1440px',
+    },
+    colors: {
+        yellow: '#FFEC40',
+        grey: '#ECECEC',
+        darkGrey: '#C0C0C0',
+        lightGrey: '#EFEFEF',
+        textGrey: '#797979'
     },
   },
   plugins: [],
