@@ -1,10 +1,10 @@
 import Link from "next/link"
-import LogoIcon from "../../../public/icons/logo.svg"
+import LogoSite from "../../../../public/icons/logo.svg"
 
 const Logo: React.FC = () => {
     return (
         <Link href='/' >
-            <LogoIcon />
+            <LogoSite />
         </Link>
     )
 }

@@ -2,7 +2,7 @@ import {
     ControlerIntroductionText, 
     GetFreeAccessText
 } from "@/contentData/homePageData"
-import LinkButton from "../UI/LinkButton"
+import Link from "next/link"
 
 const ControlerIntroduction: React.FC = () => {
   return (
@@ -11,10 +11,7 @@ const ControlerIntroduction: React.FC = () => {
         <div className="max-w-[450px] pt-[15px]">
             <p className="text-[25px] mb-[50px] leading-8" dangerouslySetInnerHTML={{ __html: GetFreeAccessText.text }} />
             <div className="max-w-[300px]">
-                <LinkButton 
-                    buttonText="Get free access" 
-                    buttonLink="/"
-                    buttonType="white" />
+                <Link href="/" className="o-button">Get free access</Link>
             </div>
         </div>
     </div>

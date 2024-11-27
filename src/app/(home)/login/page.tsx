@@ -1,8 +1,15 @@
-import LoginForm from "@/components/LoginPage/LoginForm";
-import LoginSocials from "@/components/LoginPage/LoginSocials";
+import LoginForm from "@/app/components/Login/LoginForm";
+import LoginSocials from "@/app/components/Login/LoginSocials";
 import { LoginPageText } from "@/contentData/loginPageData";
 
-const Login = () => {
+import { getServerSession, AuthOptions } from "next-auth";
+import { redirect } from "next/navigation";
+import { authOptions } from "@/app/api/lib/auth";
+
+const Login = async () => {
+    const session = await getServerSession(authOptions as AuthOptions)
+
+    if(session) redirect("/account/dashboard")
     return (
         <div className="wrapper flex justify-between pt-[120px] pb-[100px]">
             <h1 className="max-w-[600px]">{LoginPageText.text}</h1>

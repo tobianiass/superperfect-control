@@ -15,10 +15,5 @@ export const HeaderNavigationLinks = [
         id: uuidv4(),
         title: 'Learn',
         url: '/learn'
-    },
-    {
-        id: uuidv4(),
-        title: 'Log in',
-        url: '/login'
     }
 ]
