@@ -2,7 +2,7 @@ import RegistrationForm from "@/app/components/Registration/RegistrationForm";
 import { LoginPageText } from "@/contentData/loginPageData";
 import { getServerSession, AuthOptions } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "../../api/auth/[...nextauth]/route"
+import { authOptions } from "@/app/api/lib/auth";
 
 const Registration = async () => {
     const session = await getServerSession(authOptions as AuthOptions)

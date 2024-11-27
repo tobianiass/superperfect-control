@@ -1,7 +1,7 @@
 import { HeaderNavigationLinks } from '@/contentData/headerData'
 import HeaderNavigationLink from './HeaderNavigationLink'
 import { getServerSession, AuthOptions } from "next-auth";
-import { authOptions } from "../../api/auth/[...nextauth]/route"
+import { authOptions } from "@/app/api/lib/auth";
 
 const HeaderNavigation: React.FC = async () => {
     const session = await getServerSession(authOptions as AuthOptions)
