@@ -20,11 +20,13 @@ const HeaderNavigation: React.FC = async () => {
                     (<HeaderNavigationLink url="/login" name="Log in" style="hidden md:block" />)
                 }
             </ul>
-            <div className='md:hidden'>
+            {!session && 
+            (<div className='md:hidden'>
                 <LoginSocials />
                 <LoginForm />
                 <h3 className="title-h1 text-center px-[20px] py-[30px]">{LoginPageText.text}</h3>
-            </div>
+            </div>)
+            }
         </div>
     )
 }
