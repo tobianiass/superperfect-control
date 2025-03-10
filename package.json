@@ -9,8 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/uuid": "^10.0.0",
+    "axios": "^1.7.7",
+    "bcryptjs": "^2.4.3",
+    "install": "^0.13.0",
+    "mongodb": "^6.10.0",
+    "mongoose": "^8.7.3",
     "next": "14.2.15",
+    "next-auth": "^4.24.10",
+    "npm": "^10.9.0",
     "react": "^18",
     "react-dom": "^18",
     "uuid": "^10.0.0"
