@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { AuthProvider } from "../Providers"
 import localFont from "next/font/local";
 import "../globals.scss";
-import AccountHeader from "../components/Header/AccountHeader";
+import HeaderAccount from "../components/Header/HeaderAccount";
+import HeaderAccountPromo from "../components/Header/HeaderAccountPromo";
 
 
 const ppneuemontreal = localFont({
@@ -42,8 +43,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <body className={`${ppneuemontreal.className} antialiased`}>
-            <AccountHeader />
+        <body className={`${ppneuemontreal.className} antialiased font-medium`}>
+            <HeaderAccountPromo />
+            <HeaderAccount />
             <AuthProvider>
                 {children}
             </AuthProvider>

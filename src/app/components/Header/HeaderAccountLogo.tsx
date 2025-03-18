@@ -1,12 +1,12 @@
 import Link from "next/link"
 import LogoSite from "@public/icons/logo.svg"
-import LogoSiteMobile from "@public/icons/logo-mobile.svg"
+import LogoSiteMobileAccount from "@public/icons/logo-mobile-account.svg"
 
 const Logo: React.FC = () => {
     return (
-        <Link href='/' >
+        <Link href='/account/dashboard' >
             <LogoSite className="hidden md:block" />
-            <LogoSiteMobile className="md:hidden" />
+            <LogoSiteMobileAccount className="md:hidden" />
         </Link>
     )
 }
