@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Pulp Fiction",
+        "Director": "Quentin Tarantino",
+        "year": 1994,
+        "genres": ["crime", "drama"],
+        "rating": 8.9
+    },
+    {
+        "title": "Alien",
+        "Director": "Ridelly Scott",
+        "year": 1988,
+        "genres": ["horror", "triller"],
+        "rating": 8.5
+    },
+    {
+        "title": "Fight Club",
+        "Director": "David Fincher",
+        "year": 1999,
+        "genres": ["drama"],
+        "rating": 8.9
+    },
+    {
+        "title": "Forrest Gump",
+        "Director": "Robert Zemeckis",
+        "year": 1994,
+        "genres": ["romance", "drama"],
+        "rating": 9.5
+    },
+    {
+        "title": "The Shawshank Redemption",
+        "Director": "Frank Darabont",
+        "year": 1997,
+        "genres": ["drama"],
+        "rating": 8.9
+    },
+    {"title": "Snatch", "Director": "Guy Ritchie", "year": 2000, "genres": ["crime", "comedy"], "rating": 8.3}
+]
