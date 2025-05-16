@@ -13,6 +13,8 @@ const config: Config = {
         xl: '1440px',
     },
     colors: {
+        black: '#000000',
+        white: '#FFFFFF',
         yellow: '#FFEC40',
         grey: '#ECECEC',
         darkGrey: '#C0C0C0',
