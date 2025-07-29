@@ -43,7 +43,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <body className={`${ppneuemontreal.className} antialiased font-medium`}>
+        <body className={`${ppneuemontreal.className} antialiased font-medium bg-[#efefef]`}>
             <HeaderAccountPromo />
             <HeaderAccount />
             <AuthProvider>
