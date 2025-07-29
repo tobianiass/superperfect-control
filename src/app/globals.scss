@@ -49,6 +49,10 @@ h2 {
     max-width: 1360px;
     margin-inline: auto;
     padding-inline: 20px;
+
+    &--account {
+        max-width: 1200px;
+    }
 }
 
 //UI elements
@@ -136,6 +140,35 @@ h2 {
 
         footer {
             opacity: 0;
+        }
+    }
+}
+
+.c-account-mobile-nav {
+    &__logo {
+        svg {
+            @media screen and (max-width: 768px) {
+                position: absolute;
+                right: 18px;
+                bottom: 14px;
+            }
+        }
+    }
+    &__dropdown {
+        opacity: 0;
+        z-index: -1;
+    }
+
+    &:has(.is-account-navigation-open) {
+        .c-account-mobile-nav__dropdown {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .c-account-mobile-nav__logo {
+            svg {
+                transform: rotate(180deg);
+            }
         }
     }
 }
@@ -238,3 +271,11 @@ h2 {
     top: 10px;
 }
 
+.o-sign-out-item {
+    svg {
+        width: 100%;
+    }
+    path {
+        fill: #797979;
+    }
+}
