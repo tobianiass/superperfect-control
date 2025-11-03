@@ -23,6 +23,6 @@ export async function POST(request) {
     } catch (error) {
         return NextResponse.json(
             {message: "Internal Server Error while Registration"}, 
-            {staus: 500})
+            {status: 500})
     }
 }
