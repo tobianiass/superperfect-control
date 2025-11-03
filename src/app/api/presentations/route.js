@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/authOptions";
 import connectMongoDB from "@/utils/mongodb";
 import Presentation from "@/models/Presentation";
-import { authOptions } from "../auth/[...nextauth]/route"; // adjust path
+import User from "@/models/User";
 
 export async function POST(request) {
   try {
@@ -12,75 +13,50 @@ export async function POST(request) {
     }
 
     const { presentationId, embedUrl } = await request.json();
-    
+    if (!presentationId || !embedUrl) {
+      return NextResponse.json({ message: "Missing data" }, { status: 400 });
+    }
+
     await connectMongoDB();
-    
-    // Find user by session email
-    const User = (await import("@/models/User")).default;
     const user = await User.findOne({ email: session.user.email });
-    
-    if (!user) {
-      return NextResponse.json({ message: "User not found" }, { status: 404 });
+    if (!user) return NextResponse.json({ message: "User not found" }, { status: 404 });
+
+    let pres = await Presentation.findOne({ userId: user._id, presentationId });
+    if (pres) {
+      pres.lastViewed = new Date();
+      await pres.save();
+      return NextResponse.json({ presentation: pres }, { status: 200 });
     }
 
-    // Check if presentation already exists for this user
-    const existing = await Presentation.findOne({ 
-      userId: user._id, 
-      presentationId 
-    });
-
-    if (existing) {
-      existing.lastViewed = new Date();
-      await existing.save();
-      return NextResponse.json({ presentation: existing }, { status: 200 });
-    }
-
-    // Create new presentation
-    const presentation = await Presentation.create({
+    pres = await Presentation.create({
       userId: user._id,
       presentationId,
       embedUrl,
-      title: `Presentation ${presentationId.slice(0, 16)}`
+      title: `Presentation ${presentationId.slice(0, 8)}`
     });
 
-    return NextResponse.json({ presentation }, { status: 201 });
-
-  } catch (error) {
-    console.error("Error saving presentation:", error);
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ presentation: pres }, { status: 201 });
+  } catch (e) {
+    console.error(e);
+    return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
   }
 }
 
-export async function GET(request) {
+export async function GET() {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user?.email) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
-
     await connectMongoDB();
-    
-    const User = (await import("@/models/User")).default;
     const user = await User.findOne({ email: session.user.email });
-    
-    if (!user) {
-      return NextResponse.json({ presentations: [] }, { status: 200 });
-    }
-
+    if (!user) return NextResponse.json({ presentations: [] }, { status: 200 });
     const presentations = await Presentation.find({ userId: user._id })
-      .sort({ lastViewed: -1 })
-      .limit(10);
-
+      .sort({ updatedAt: -1 })
+      .limit(25);
     return NextResponse.json({ presentations }, { status: 200 });
-
-  } catch (error) {
-    console.error("Error fetching presentations:", error);
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
+  } catch (e) {
+    console.error(e);
+    return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
   }
 }

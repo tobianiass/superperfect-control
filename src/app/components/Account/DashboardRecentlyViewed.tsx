@@ -4,15 +4,25 @@ import Link from "next/link"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
+interface Presentation {
+  _id: string;
+  presentationId: string;
+  embedUrl: string;
+  title?: string;
+  thumbnail?: string;
+  lastViewed?: string;
+}
+
 const DashboardRecentlyViewd = () => {
-    const [presentations, setPresentations] = useState([]);
+    const [presentations, setPresentations] = useState<Presentation[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch("/api/presentations")
             .then(res => res.json())
             .then(data => {
-                setPresentations(data.presentations || []);
+                const items: Presentation[] = data.presentations || [];
+                setPresentations(items);
                 setLoading(false);
             })
             .catch(err => {
@@ -50,18 +60,20 @@ const DashboardRecentlyViewd = () => {
                 <ul className="flex flex-wrap justify-between gap-4 mt-8">
                     {presentations.map((pres) => (
                         <li key={pres._id}>
-                            <Link 
+                            <Link
                                 href={`https://superperfect-remote.onrender.com/host/${pres.presentationId}`}
                                 target="_blank"
                                 className="block"
                             >
-                                <Image 
-                                    src={pres.thumbnail} 
-                                    alt={pres.title} 
-                                    width={368} 
-                                    height={198} 
+                                <Image
+                                    src={pres.thumbnail || "/img/recently_1.jpg"}
+                                    alt={pres.title || pres.presentationId}
+                                    width={368}
+                                    height={198}
                                 />
-                                <p className="text-[15px] text-[#797979] pt-2">{pres.title}</p>
+                                <p className="text-[15px] text-[#797979] pt-2">
+                                    {pres.title || pres.presentationId}
+                                </p>
                             </Link>
                         </li>
                     ))}
