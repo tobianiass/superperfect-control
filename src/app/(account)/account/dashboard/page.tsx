@@ -6,12 +6,12 @@ import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
 
 const Dashboard = () => {
-    const [embedUrl, setEmbedUrl] = useState("");
+    const [embedUrl, setEmbedUrl] = useState<string>("");
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const { data: session, status } = useSession();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (status !== "authenticated") {
