@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "../globals.scss";
 import HeaderAccount from "../components/Header/HeaderAccount";
 import HeaderAccountPromo from "../components/Header/HeaderAccountPromo";
+import SessionMonitor from "../components/SessionMonitor";
 
 
 const ppneuemontreal = localFont({
@@ -47,6 +48,7 @@ export default function RootLayout({
             <HeaderAccountPromo />
             <HeaderAccount />
             <AuthProvider>
+                <SessionMonitor />
                 {children}
             </AuthProvider>
         </body>
