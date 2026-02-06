@@ -1,9 +1,14 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const MONGO_URI = "mongodb+srv://abegas88:IZNwm83qdrYXv3GT@cluster0.44dc8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0&dbName=ControlerUsers";
+const MONGO_URI = process.env.MONGO_URI;
 
 async function updateUsers() {
     try {
+        if (!MONGO_URI) {
+            throw new Error('MONGO_URI environment variable is not set');
+        }
+        
         await mongoose.connect(MONGO_URI);
         console.log("Connected to MongoDB");
 
