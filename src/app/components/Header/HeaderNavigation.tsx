@@ -5,6 +5,7 @@ import { authOptions } from "@/app/api/lib/auth";
 import LoginForm from "../Login/LoginForm"
 import LoginSocials from '../Login/LoginSocials';
 import { LoginPageText } from "@/contentData/loginPageData";
+import Link from "next/link";
 
 const HeaderNavigation: React.FC = async () => {
     const session = await getServerSession(authOptions as AuthOptions)
@@ -24,6 +25,10 @@ const HeaderNavigation: React.FC = async () => {
             (<div className='md:hidden'>
                 <LoginSocials />
                 <LoginForm />
+                <div className="text-[25px] font-medium text-black text-center mb-[40px] mt-[30px] px-[30px]">
+                    Don't have Controler account yet?<br />
+                    <Link href='/registration' className="underline">Sign in here</Link>
+                </div>
                 <h3 className="title-h1 text-center px-[20px] py-[30px]">{LoginPageText.text}</h3>
             </div>)
             }

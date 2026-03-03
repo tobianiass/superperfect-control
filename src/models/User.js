@@ -12,7 +12,35 @@ const userShema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true 
+        required: false  // Not required for OAuth users
+    },
+    provider: {
+        type: String,
+        default: "credentials" // "credentials" or "google"
+    },
+    providerId: {
+        type: String,
+        default: null
+    },
+    emailVerified: {
+        type: Boolean,
+        default: false
+    },
+    verificationToken: {
+        type: String,
+        default: null
+    },
+    verificationTokenExpiry: {
+        type: Date,
+        default: null
+    },
+    resetToken: {
+        type: String,
+        default: null
+    },
+    resetTokenExpiry: {
+        type: Date,
+        default: null
     }
 }, {timestamps: true})
 

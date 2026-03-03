@@ -21,6 +21,13 @@ export const authOptions = {
                         return null
                     }
 
+                    console.log(`Login attempt for ${email}: emailVerified = ${user.emailVerified}`)
+
+                    // Check if email is verified
+                    if(user.emailVerified !== true) {
+                        throw new Error("Please verify your email before logging in")
+                    }
+
                     const passwordMatch = await bcrypt.compare(password, user.password)
 
                     if(!passwordMatch) {
@@ -30,7 +37,7 @@ export const authOptions = {
                     return user
 
                 } catch (error) {
-                    console.log(error)
+                    throw error
                 }
             }
         })
